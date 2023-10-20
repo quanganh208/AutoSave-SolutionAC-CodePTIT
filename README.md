@@ -15,7 +15,7 @@
 
 ### Config
 
-- Đặt tên đăng nhập, mật khẩu CODE PTIT tại file **account.json**
+- Đặt tên đăng nhập, mật khẩu Code PTIT tại file **account.json**
 - Đổi tên thư mục chứa file solution Code PTIT, điều chỉnh thời gian delay tại file **config.json**
 - _Lưu ý: Đơn vị timeDelay: giây. Tool sẽ random delay từ 1 đến timeDelay. Thiếu bất cứ file nào sẽ dẫn đến lỗi, đừng xóa lung tung nhé =)))_
 

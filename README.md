@@ -13,6 +13,8 @@
 
 - Cài đặt Python tại đường link: [Python](https://www.python.org/)
 
+_Lưu ý: Nhớ tick ô "Add python.exe to PATH" nhé_
+
 ### Config
 
 - Đặt tên đăng nhập, mật khẩu Code PTIT tại file **account.json**

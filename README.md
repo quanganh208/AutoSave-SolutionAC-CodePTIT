@@ -25,6 +25,8 @@ _Lưu ý: Nhớ tick ô "Add python.exe to PATH" nhé_
 
 ### Using tool
 
+- Nếu bạn đã cài Python:
+
 ```sh
 py main.py
 ```

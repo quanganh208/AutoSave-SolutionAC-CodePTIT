@@ -15,6 +15,8 @@
 
 _Lưu ý: Nhớ tick ô "Add python.exe to PATH" nhé_
 
+- Nếu bạn lười cài Python, thì bỏ qua bước này =)))
+
 ### Config
 
 - Đặt tên đăng nhập, mật khẩu Code PTIT tại file **account.json**
@@ -26,6 +28,8 @@ _Lưu ý: Nhớ tick ô "Add python.exe to PATH" nhé_
 ```sh
 py main.py
 ```
+
+- Nếu bạn chưa cài Python, thì chỉ cần chạy **main.exe**.
 
 ## Donation
 

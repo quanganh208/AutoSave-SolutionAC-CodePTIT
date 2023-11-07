@@ -12,9 +12,10 @@ def getListSourceCode(completeQuestionsList):
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
+    os.system('title AutoSave Solution AC Code PTIT v1.0.0 By Quanh' if os.name == 'nt' else '')
     if apiCodePTIT.getCookie() == False:
         input("Nhấn [Enter] để thoát chương trình: ")
-        exit()
+        return
     # Check group
     groupList = apiCodePTIT.getGroupList()
     if (len(groupList) > 1):
@@ -44,6 +45,7 @@ def main():
     getListSourceCode(completeQuestionsList)
     print(f"{Fore.LIGHTGREEN_EX}Hoàn thành tải source code{Fore.RESET}")
     input("Nhấn [Enter] để thoát chương trình: ")
+    return
 
 
 with open('account.json', 'r') as file:

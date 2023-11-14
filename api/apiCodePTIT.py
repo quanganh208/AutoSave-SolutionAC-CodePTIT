@@ -21,7 +21,7 @@ from api.model import *
 
 
 class ApiCodePTIT:
-    count = 1
+    count = 0
 
     def __init__(self, username, password):
         init(autoreset=True)
@@ -151,6 +151,7 @@ class ApiCodePTIT:
         return solutionList
 
     def getSolutionAC(self, solution=SolutionInfo, question=ProblemInfo):
+        ApiCodePTIT.count += 1
 
         request = requests.get(
             url=f'{solution.solutionLink}', headers=self.header)
@@ -176,7 +177,6 @@ class ApiCodePTIT:
                 file.write(cleanedSolutionCode)
             print(
                 f"{Fore.GREEN}[{ApiCodePTIT.count}] Tải source code bài {question.problemID} - {question.problemName} thành công{Fore.RESET}")
-        ApiCodePTIT.count += 1
         delay = random.uniform(1, self.timeDelay)
         print(f"{Fore.LIGHTCYAN_EX}Nghỉ ngơi {delay:.2f} giây{Fore.RESET}", end="\r")
         time.sleep(delay)

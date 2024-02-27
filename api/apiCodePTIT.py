@@ -98,8 +98,15 @@ class ApiCodePTIT:
             url=f'{self.host}/student/question', headers=self.header, params={'page': page, 'course': self.course if self.course and page == 1 else ''})
         completeQuestionsList = []
         incompleteQuestionsList = []
-        problems = BeautifulSoup(questions.text, 'html.parser').tbody
-        problems = problems.find_all('tr')
+        try:
+            problems = BeautifulSoup(
+                questions.text, 'html.parser').find_all('tbody')[0]
+            problems = problems.find_all('tr')
+            problemNameFirst = problems[0].find_all('a')[1]
+        except IndexError:
+            problems = BeautifulSoup(
+                questions.text, 'html.parser').find_all('tbody')[1]
+            problems = problems.find_all('tr')
         for problem in problems:
             problemName = problem.find_all('a')[1].text.strip()
             problemName = " ".join(problemName.split())

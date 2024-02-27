@@ -13,7 +13,8 @@ def getListSourceCode(completeQuestionsList):
 def main():
     title = 'AutoSave Solution AC Code PTIT v1.0.0 By Quanh'
     os.system('cls' if os.name == 'nt' else 'clear')
-    os.system(f'title {title}' if os.name == 'nt' else 'gnome-terminal --title="{title}"')
+    os.system(f'title {title}' if os.name ==
+              'nt' else 'gnome-terminal --title="{title}"')
     if apiCodePTIT.getCookie() == False:
         input("Nhấn [Enter] để thoát chương trình: ")
         return
@@ -34,7 +35,7 @@ def main():
     # Get list question
     print(f"{Fore.LIGHTYELLOW_EX}Đang tìm kiếm bài đã làm và chưa làm...{Fore.RESET}")
     completeQuestionsList, incompleteQuestionsList = [], []
-    for index in range(1, 4):
+    for index in range(1, 5):
         completeList, incompleteList = apiCodePTIT.getQuestionsInPage(index)
         completeQuestionsList += completeList
         incompleteQuestionsList += incompleteList

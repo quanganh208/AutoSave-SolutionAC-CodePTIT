@@ -28,7 +28,7 @@ _Lưu ý: Nhớ tick ô "Add python.exe to PATH" nhé_
 - Nếu bạn đã cài Python:
 
 ```sh
-py main.py
+python3 main.py
 ```
 
 - Nếu bạn chưa cài Python, thì chỉ cần chạy **main.exe**.

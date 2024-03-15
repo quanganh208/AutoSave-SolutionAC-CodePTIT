@@ -34,8 +34,9 @@ def main():
 
     # Get list question
     print(f"{Fore.LIGHTYELLOW_EX}Đang tìm kiếm bài đã làm và chưa làm...{Fore.RESET}")
+    apiCodePTIT.getPageCount()
     completeQuestionsList, incompleteQuestionsList = [], []
-    for index in range(1, 5):
+    for index in range(1, apiCodePTIT.pageCount + 1):
         completeList, incompleteList = apiCodePTIT.getQuestionsInPage(index)
         completeQuestionsList += completeList
         incompleteQuestionsList += incompleteList

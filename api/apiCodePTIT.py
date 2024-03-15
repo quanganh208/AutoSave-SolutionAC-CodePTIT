@@ -9,9 +9,9 @@ try:
     from bs4 import BeautifulSoup
 except ModuleNotFoundError:
     print("Đang cài đặt các thư viện cần thiết, vui lòng chờ...")
-    os.system('pip install requests')
-    os.system('pip install colorama')
-    os.system('pip install beautifulsoup4')
+    os.system('pip3 install requests')
+    os.system('pip3 install colorama')
+    os.system('pip3 install beautifulsoup4')
     import requests
     import json
     from colorama import Fore, init
@@ -34,6 +34,7 @@ class ApiCodePTIT:
         self.password = password
         self.name = None
         self.id = None
+        self.pageCount = 0
 
         self.path = os.getcwd()
         with open('config.json', 'r') as file:
@@ -93,6 +94,13 @@ class ApiCodePTIT:
     def setCourse(self, course):
         self.course = course
 
+    def getPageCount(self):
+        questions = requests.get(
+            url=f'{self.host}/student/question', headers=self.header, params={'course': self.course})
+        pageCount = BeautifulSoup(questions.text, 'html.parser').find_all(
+            'ul', class_='pagination')[0].find_all('li')
+        self.pageCount = int(pageCount[-2].text.strip())
+
     def getQuestionsInPage(self, page):
         questions = requests.get(
             url=f'{self.host}/student/question', headers=self.header, params={'page': page, 'course': self.course if self.course and page == 1 else ''})
@@ -102,7 +110,7 @@ class ApiCodePTIT:
             problems = BeautifulSoup(
                 questions.text, 'html.parser').find_all('tbody')[0]
             problems = problems.find_all('tr')
-            problemNameFirst = problems[0].find_all('a')[1]
+            problems[0].find_all('a')[1]
         except IndexError:
             problems = BeautifulSoup(
                 questions.text, 'html.parser').find_all('tbody')[1]

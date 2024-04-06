@@ -4,7 +4,7 @@
 
 @Version: 1.0.0
 
-<img src="https://i.ibb.co/9ySSFHK/A-nh-ma-n-hi-nh-2024-04-06-lu-c-21-24-42.png" alt="Example" title= "Example">
+<img src="https://i.postimg.cc/s2dDLwMm/example.png)](https://postimg.cc/18BQn0cV" alt="Example" title= "Example">
 
 ### Description
 

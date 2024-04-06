@@ -42,7 +42,7 @@ class ApiCodePTIT:
             nameFolder = config['nameFolder']
             self.timeDelay = config['timeDelay']
 
-            self.path = f'{self.path}\\{nameFolder}'
+            self.path = f'{self.path}/{nameFolder}'
         try:
             os.makedirs(self.path)
         except FileExistsError:
@@ -184,14 +184,15 @@ class ApiCodePTIT:
             if language.name == solution.solutionLanguage:
                 extensionFile = language.extension
                 break
-        if os.path.exists(f'{self.path}\\{question.problemID} - {question.problemName}{extensionFile}'):
+        if os.path.exists(f'{self.path}/{question.problemID} - {question.problemName}{extensionFile}'):
             print(
                 f"{Fore.YELLOW}[{ApiCodePTIT.count}] Đã tồn tại source code bài {question.problemID} - {question.problemName}{Fore.RESET}")
         else:
-            with open(f'{self.path}\\{question.problemID} - {question.problemName}{extensionFile}', 'w', encoding='utf-8') as file:
+            with open(f'{self.path}/{question.problemID} - {question.problemName}{extensionFile}', 'w', encoding='utf-8') as file:
                 file.write(cleanedSolutionCode)
             print(
                 f"{Fore.GREEN}[{ApiCodePTIT.count}] Tải source code bài {question.problemID} - {question.problemName} thành công{Fore.RESET}")
         delay = random.uniform(1, self.timeDelay)
-        print(f"{Fore.LIGHTCYAN_EX}Nghỉ ngơi {delay:.2f} giây{Fore.RESET}", end="\r")
+        print(f"{Fore.LIGHTCYAN_EX}Nghỉ ngơi {
+              delay:.2f} giây{Fore.RESET}", end="\r")
         time.sleep(delay)

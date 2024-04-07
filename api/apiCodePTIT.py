@@ -2,7 +2,7 @@ import os
 import time
 import random
 import json
-
+import configparser
 try:
     import requests
     from colorama import Fore, init
@@ -13,7 +13,6 @@ except ModuleNotFoundError:
     os.system('pip3 install colorama')
     os.system('pip3 install beautifulsoup4')
     import requests
-    import json
     from colorama import Fore, init
     from bs4 import BeautifulSoup
 
@@ -37,12 +36,13 @@ class ApiCodePTIT:
         self.pageCount = 0
 
         self.path = os.getcwd()
-        with open('config.json', 'r') as file:
-            config = json.load(file)
-            nameFolder = config['nameFolder']
-            self.timeDelay = config['timeDelay']
 
-            self.path = f'{self.path}/{nameFolder}'
+        config = configparser.ConfigParser()
+        config.read('config.ini')
+        nameFolder = config['SETTINGS']['NAME_FOLDER']
+        self.timeDelay = int(config['SETTINGS']['TIME_DELAY'])
+
+        self.path = f'{self.path}/{nameFolder}'
         try:
             os.makedirs(self.path)
         except FileExistsError:

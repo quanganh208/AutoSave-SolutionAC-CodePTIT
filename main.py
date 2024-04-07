@@ -15,6 +15,7 @@ def main():
     if apiCodePTIT.getCookie() == False:
         input("Nhấn [Enter] để thoát chương trình: ")
         return
+
     # Check group
     groupList = apiCodePTIT.getGroupList()
     if (len(groupList) > 1):
@@ -48,9 +49,10 @@ def main():
     return
 
 
-with open('account.json', 'r') as file:
-    account = json.load(file)
-    username = account['username']
-    password = account['password']
+if __name__ == "__main__":
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    username = config['ACCOUNT']['USERNAME']
+    password = config['ACCOUNT']['PASSWORD']
     apiCodePTIT = ApiCodePTIT(username, password)
     main()

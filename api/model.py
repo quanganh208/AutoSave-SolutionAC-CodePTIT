@@ -34,4 +34,4 @@ class LanguageCode:
 
 
 languageCodeList = [LanguageCode('C', '.c'), LanguageCode(
-    'C/C++', '.cpp'), LanguageCode('Python 3', '.py'), LanguageCode('Java', '.java')]
+    'C/C++', '.cpp'), LanguageCode('Python 3', '.py'), LanguageCode('Java', '.java'), LanguageCode('C#', '.cs'), LanguageCode('Golang', '.go')]

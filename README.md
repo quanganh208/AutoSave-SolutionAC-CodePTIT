@@ -2,7 +2,7 @@
 
 @Author: [quanganh208](https://github.com/quanganh208)
 
-@Version: 1.0.0
+@Version: 1.0.1
 
 <img src="https://i.postimg.cc/s2dDLwMm/example.png)](https://postimg.cc/18BQn0cV" alt="Example" title= "Example">
 
@@ -17,23 +17,20 @@
 
 _Lưu ý: Nhớ tick ô "Add python.exe to PATH" nhé_
 
-- Nếu bạn lười cài Python, thì bỏ qua bước này =)))
-
 ### Config
 
-- Đặt tên đăng nhập, mật khẩu Code PTIT tại file **account.json**
-- Đổi tên thư mục chứa file solution Code PTIT, điều chỉnh thời gian delay tại file **config.json**
+- File **config.ini**:
+  - USERNAME: Tài khoản Code PTIT của bạn
+  - PASSWORD: Mật khẩu Code PTIT của bạn
+  - NAME_FOLDER: Tên folder chứa solution các bài tập trên Code PTIT
+  - TIME_DELAY: Thời gian delay ngẫu nhiên
 - _Lưu ý: Đơn vị timeDelay: giây. Tool sẽ random delay từ 1 đến timeDelay. Thiếu bất cứ file nào sẽ dẫn đến lỗi, đừng xóa lung tung nhé =)))_
 
 ### Using tool
 
-- Nếu bạn đã cài Python:
-
-```sh
+```shc
 python3 main.py
 ```
-
-- Nếu bạn chưa cài Python, thì chỉ cần chạy **main.exe**.
 
 ## Donation
 

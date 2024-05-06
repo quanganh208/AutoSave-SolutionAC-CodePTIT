@@ -1,5 +1,14 @@
 class ProblemInfo:
-    def __init__(self, problemName, problemLink, problemID, problemStatus, problemGroup, problemTopic, problemDifficulty):
+    def __init__(
+        self,
+        problemName,
+        problemLink,
+        problemID,
+        problemStatus,
+        problemGroup,
+        problemTopic,
+        problemDifficulty,
+    ):
         self.problemName = problemName
         self.problemLink = problemLink
         self.problemID = problemID
@@ -10,7 +19,17 @@ class ProblemInfo:
 
 
 class SolutionInfo:
-    def __init__(self, solutionID, solutionTimeSubmit, solutionName, solutionLink, solutionStatus, solutionTime, solutionLanguage, solutionMemory):
+    def __init__(
+        self,
+        solutionID,
+        solutionTimeSubmit,
+        solutionName,
+        solutionLink,
+        solutionStatus,
+        solutionTime,
+        solutionLanguage,
+        solutionMemory,
+    ):
         self.solutionID = solutionID
         self.solutionTimeSubmit = solutionTimeSubmit
         self.solutionName = solutionName
@@ -33,5 +52,11 @@ class LanguageCode:
         self.extension = extension
 
 
-languageCodeList = [LanguageCode('C', '.c'), LanguageCode(
-    'C/C++', '.cpp'), LanguageCode('Python 3', '.py'), LanguageCode('Java', '.java'), LanguageCode('C#', '.cs'), LanguageCode('Golang', '.go')]
+languageCodeList = [
+    LanguageCode("C", ".c"),
+    LanguageCode("C/C++", ".cpp"),
+    LanguageCode("Python 3", ".py"),
+    LanguageCode("Java", ".java"),
+    LanguageCode("C#", ".cs"),
+    LanguageCode("Golang", ".go"),
+]

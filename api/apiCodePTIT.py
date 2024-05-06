@@ -10,9 +10,9 @@ try:
     from bs4 import BeautifulSoup
 except ModuleNotFoundError:
     print("Đang cài đặt các thư viện cần thiết, vui lòng chờ...")
-    os.system("pip3 install requests")
-    os.system("pip3 install colorama")
-    os.system("pip3 install beautifulsoup4")
+    os.system("python3 -m pip install requests")
+    os.system("python3 -m pip install colorama")
+    os.system("python3 -m pip install beautifulsoup4")
     import requests
     from colorama import Fore, init
     from bs4 import BeautifulSoup
@@ -27,7 +27,7 @@ class ApiCodePTIT:
         init(autoreset=True)
         self.host = "https://code.ptit.edu.vn"
         self.header = {
-            "User-Agent": "Mozilla/5.0 (Linux; Android 13; SM-S901U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
         }
         self.course = None
         self.username = username

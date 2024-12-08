@@ -218,28 +218,123 @@ class ApiCodePTIT:
         cleaned_lines = [line.strip("\r") for line in lines if line.strip()]
         cleanedSolutionCode = "\n".join(cleaned_lines)
 
-        # Save source code
         extensionFile = ".txt"
         for language in languageCodeList:
             if language.name == solution.solutionLanguage:
                 extensionFile = language.extension
                 break
-        if os.path.exists(
-            f"{self.path}/{question.problemID} - {question.problemName}{extensionFile}"
-        ):
-            print(
-                f"{Fore.YELLOW}[{ApiCodePTIT.count}] Đã tồn tại source code bài {question.problemID} - {question.problemName}{Fore.RESET}"
+
+        if (
+            BeautifulSoup(request.text, "html.parser").find(
+                "button", {"type": "submit"}
             )
+            is not None
+        ):
+
+            if os.path.exists(
+                f"{self.path}/{question.problemID} - {question.problemName}{extensionFile}"
+            ):
+                print(
+                    f"{Fore.YELLOW}[{ApiCodePTIT.count}] Đã tồn tại source code bài {question.problemID} - {question.problemName}{Fore.RESET}"
+                )
+            else:
+                with open(
+                    f"{self.path}/{question.problemID} - {question.problemName}{extensionFile}",
+                    "w",
+                    encoding="utf-8",
+                ) as file:
+                    file.write(cleanedSolutionCode)
+                print(
+                    f"{Fore.GREEN}[{ApiCodePTIT.count}] Tải source code bài {question.problemID} - {question.problemName} thành công{Fore.RESET}"
+                )
         else:
-            with open(
-                f"{self.path}/{question.problemID} - {question.problemName}{extensionFile}",
-                "w",
-                encoding="utf-8",
-            ) as file:
-                file.write(cleanedSolutionCode)
+            folder_path = f"{self.path}/{question.problemID} - {question.problemName}"
+            if os.path.exists(folder_path):
+                print(
+                    f"{Fore.YELLOW}[{ApiCodePTIT.count}] Đã tồn tại source code bài {question.problemID} - {question.problemName}{Fore.RESET}"
+                )
+                return
+            files = cleanedSolutionCode.split("src/")
+            for file in files:
+                if file.strip():
+                    lines = file.splitlines()
+                    file_path = f"{folder_path}/src/{lines[0].strip()}"
+                    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+                    with open(file_path, "w", encoding="utf-8") as f:
+                        f.write("\n".join(lines[1:]))
             print(
                 f"{Fore.GREEN}[{ApiCodePTIT.count}] Tải source code bài {question.problemID} - {question.problemName} thành công{Fore.RESET}"
             )
+
+        delay = random.uniform(1, self.timeDelay)
+        print(f"{Fore.LIGHTCYAN_EX}Nghỉ ngơi {delay:.2f} giây{Fore.RESET}", end="\r")
+        time.sleep(delay)
+
+    def getListContest(self):
+        htmlContent = requests.get(
+            url=f"{self.host}/student/contest", headers=self.header
+        ).text
+        soup = BeautifulSoup(htmlContent, "html.parser")
+
+        table = soup.find("table", {"class": "contest__table"})
+        contestList = []
+        for row in table.find_all("tr")[1:]:
+            cells = row.find_all("td")
+
+            if len(cells) > 0:
+                id = cells[1].text.strip()
+                name = cells[2].text.strip()
+                startTime = cells[3].text.strip()
+                endTime = cells[4].text.strip()
+                link = cells[5].find("a")["href"]
+
+                contestList.append(ContestInfo(id, name, startTime, endTime, link))
+        return contestList
+
+    def getQuestionListContest(self, contest=ContestInfo):
+        htmlContent = requests.get(
+            url=f"{contest.contestLink}", headers=self.header
+        ).text
+        soup = BeautifulSoup(htmlContent, "html.parser")
+
+        problemList = []
+        table = soup.find("table", class_="contest__prob__table")
+        rows = table.find_all("tr")[1:]
+
+        for row in rows:
+            cols = row.find_all("td")
+
+            id = cols[1].text.strip()
+            title = cols[2].find("a").text.strip()
+            link = cols[2].find("a")["href"]
+
+            problemList.append(ProblemInfo(title, link, id, None, None, None, None))
+        return problemList
+
+    def getQuestionInfo(self, problem=ProblemInfo):
+        htmlContent = requests.get(
+            url=f"{problem.problemLink}", headers=self.header
+        ).text
+        soup = BeautifulSoup(htmlContent, "html.parser")
+
+        questionCode = soup.find("input", {"name": "question"})["value"]
+
+        submitDes = soup.find(class_="submit__des")
+        submitReq = soup.find(class_="submit__req")
+
+        with open(f"{self.path}/{questionCode}.md", "w", encoding="utf-8") as file:
+            if submitDes:
+                file.write("## Đề Bài\n")
+                file.write(str(submitDes))
+                file.write("\n\n")
+
+            if submitReq:
+                file.write("## Yêu Cầu\n")
+                file.write(str(submitReq))
+                file.write("\n")
+        print(
+            f"{Fore.GREEN}Đã tải thông tin bài {questionCode} - {problem.problemName}{Fore.RESET}"
+        )
         delay = random.uniform(1, self.timeDelay)
         print(f"{Fore.LIGHTCYAN_EX}Nghỉ ngơi {delay:.2f} giây{Fore.RESET}", end="\r")
         time.sleep(delay)

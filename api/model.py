@@ -18,6 +18,22 @@ class ProblemInfo:
         self.problemDifficulty = problemDifficulty
 
 
+class ContestInfo:
+    def __init__(
+        self,
+        contestID,
+        contestName,
+        contestStartTime,
+        contestEndTime,
+        contestLink,
+    ):
+        self.contestID = contestID
+        self.contestName = contestName
+        self.contestStartTime = contestStartTime
+        self.contestEndTime = contestEndTime
+        self.contestLink = contestLink
+
+
 class SolutionInfo:
     def __init__(
         self,

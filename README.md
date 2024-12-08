@@ -2,9 +2,14 @@
 
 @Author: [quanganh208](https://github.com/quanganh208)
 
-@Version: 1.0.1
+@Version: 1.1.0
 
 <img src="https://i.postimg.cc/s2dDLwMm/example.png)](https://postimg.cc/18BQn0cV" alt="Example" title= "Example">
+
+## Current update
+
+- Update chức năng lưu đề contest về để luyện tập lại khi contest kết thúc.
+- Lưu source Java theo folder nếu source đó có nhiều file.
 
 ### Description
 
